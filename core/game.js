@@ -23,11 +23,6 @@ function newGame() {
     flipped = 0;
     cards.shuffle();
 
-    let li = document.getElementsByTagName('li');
-    if (li) {
-        //console.log(li);
-    }
-
     for (let i = 0; i < cards.length; i++) {
         // first create new li
         const cardLi = document.createElement('li');
@@ -107,3 +102,9 @@ function flipTile(tile, val) {
 window.onload = function () {
     newGame();
 };
+
+// New game functionallity
+const key = document.getElementsByClassName('key')[0];
+key.addEventListener('click', () => {
+    newGame();
+})
