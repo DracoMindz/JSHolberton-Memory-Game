@@ -3,8 +3,8 @@ const board = document.getElementsByClassName('cardHolder')[0];
 const cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
 
 // Selections
-const cardValue = [];
-const card_tile = [];
+let cardValue = [];
+let card_tile = [];
 let flipped = 0;
 
 // Shuffle function
@@ -37,6 +37,8 @@ function newGame() {
         card.classList.add('card');      // Assign className to new element
         card.classList.add(`tile_${i}`); // set identifier for card
 
+        // the clickSelector
+        card.setAttribute('onclick', `flipTile(this, ${cards[i]})`);
 
         // append card to LI, and then that to the board
         cardLi.appendChild(card);
@@ -44,7 +46,8 @@ function newGame() {
     }
 }
 
-function flipTile(tile, value) {
+/* The flip function */
+function flipTile(tile, val) {
     if (tile.innerHTML == "" && cardValue < 2) {
         tile.style.background = '#FFF';
         tile.innerHTML = val;
@@ -60,10 +63,6 @@ function flipTile(tile, value) {
             if (cardValue[0] == cardValue[1]) {
                 flipped += 2;
 
-                // Reset arrays 
-                cardValue = [];
-                card_tile = [];
-
                 // See if game is finished
                 if (flipped == cards.length) {
                     alert("Congratulations!");
@@ -73,6 +72,11 @@ function flipTile(tile, value) {
 
             // else flipback
             else {
+
+                // Reset arrays 
+                cardValue = [];
+                card_tile = [];
+
                 setTimeout(function() {
                     // revert css here
                 }, 750);
