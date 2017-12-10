@@ -25,7 +25,7 @@ function newGame() {
 
     let li = document.getElementsByTagName('li');
     if (li) {
-        console.log(li);
+        //console.log(li);
     }
 
     for (let i = 0; i < cards.length; i++) {
@@ -50,18 +50,27 @@ function newGame() {
 function flipTile(tile, val) {
     if (tile.innerHTML == "" && cardValue < 2) {
         tile.style.background = '#FFF';
-        tile.innerHTML = val;
         
+        // First card selected
         if (cardValue.length == 0) {
             cardValue.push(val);
-            card_tile.push(tile.id);
-        } else if (cardValue.length == 1) {
+            card_tile.push(tile.classList[1]);
+            console.log(cardValue);
+            return;
+        }
+        
+        // Second card selected
+        if (cardValue.length == 1) {
             cardValue.push(val);
-            card_tile.push(tile.id);
+            card_tile.push(tile.classList[1]);
 
             // See if they are the same
             if (cardValue[0] == cardValue[1]) {
                 flipped += 2;
+
+                // Reset 
+                card_tile = [];
+                cardValue = [];
 
                 // See if game is finished
                 if (flipped == cards.length) {
@@ -72,16 +81,25 @@ function flipTile(tile, val) {
 
             // else flipback
             else {
-
-                // Reset arrays 
-                cardValue = [];
-                card_tile = [];
-
                 setTimeout(function() {
-                    // revert css here
+                    // Change back
+                    for (let i = 0; i < 2; i++) {
+                        const selected = document.querySelector(`.${card_tile[i]}`);
+                        selected.style.background = "#000";
+                        console.log(selected);
+                    }
+
+                    // Reset
+                    card_tile = [];
+                    cardValue = [];
                 }, 750);
             }
-        }
+
+            return;
+        } 
+
+        // Should never go here
+        console.log('Error: Arrays invalid read');
     }
 }
 
