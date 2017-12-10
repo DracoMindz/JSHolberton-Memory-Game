@@ -3,7 +3,7 @@ const board = document.getElementsByClassName('cardHolder')[0];
 const cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
 const cardValue = [];
 const card_tile = [];
-const selected = 0;
+let flipped = 0;
 
 // Shuffle function
 Array.prototype.shuffle = function() {
@@ -17,16 +17,28 @@ Array.prototype.shuffle = function() {
 }
 
 /* Add cards to board */
-for (let i = 0; i < cards; i++) {
-    // first create new li
-    const cardLi = document.createElement('li');
+function newGame() {
+    flipped = 0;
+    cards.shuffle();
 
-    // create the card class
-    const card = document.createElement('div');
-    card.classList.add('card'); // Assign className to new element
+    for (let i = 0; i < cards.length; i++) {
+        // first create new li
+        const cardLi = document.createElement('li');
 
-    // append card to LI, and then that to the board
-    cardLi.appendChild(card);
-    board.appendChild(cardLi);
-    console.log(i);
+        // create the card class
+        const card = document.createElement('div');
+        card.classList.add('card');      // Assign className to new element
+        card.classList.add(`tile_${i}`); // set identifier for card
+
+
+        // append card to LI, and then that to the board
+        cardLi.appendChild(card);
+        board.appendChild(cardLi);
+    }
 }
+
+
+// Setup a game on first sight
+window.onload = function () {
+    newGame();
+};
