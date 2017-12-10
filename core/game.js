@@ -1,6 +1,8 @@
 // Game
 const board = document.getElementsByClassName('cardHolder')[0];
 const cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+
+// Selections
 const cardValue = [];
 const card_tile = [];
 let flipped = 0;
@@ -21,6 +23,11 @@ function newGame() {
     flipped = 0;
     cards.shuffle();
 
+    let li = document.getElementsByTagName('li');
+    if (li) {
+        console.log(li);
+    }
+
     for (let i = 0; i < cards.length; i++) {
         // first create new li
         const cardLi = document.createElement('li');
@@ -37,6 +44,42 @@ function newGame() {
     }
 }
 
+function flipTile(tile, value) {
+    if (tile.innerHTML == "" && cardValue < 2) {
+        tile.style.background = '#FFF';
+        tile.innerHTML = val;
+        
+        if (cardValue.length == 0) {
+            cardValue.push(val);
+            card_tile.push(tile.id);
+        } else if (cardValue.length == 1) {
+            cardValue.push(val);
+            card_tile.push(tile.id);
+
+            // See if they are the same
+            if (cardValue[0] == cardValue[1]) {
+                flipped += 2;
+
+                // Reset arrays 
+                cardValue = [];
+                card_tile = [];
+
+                // See if game is finished
+                if (flipped == cards.length) {
+                    alert("Congratulations!");
+                    newBoard();
+                }
+            }
+
+            // else flipback
+            else {
+                setTimeout(function() {
+                    // revert css here
+                }, 750);
+            }
+        }
+    }
+}
 
 // Setup a game on first sight
 window.onload = function () {
