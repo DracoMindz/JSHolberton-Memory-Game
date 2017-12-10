@@ -48,7 +48,6 @@ function newGame() {
 
 /* The flip function */
 function flipTile(tile, val) {
-    if (tile.innerHTML == "" && cardValue < 2) {
         tile.style.background = '#FFF';
         console.log('DEBUG: <b>FUNCTION START</b>');
 
@@ -102,7 +101,6 @@ function flipTile(tile, val) {
 
             return;
         } 
-    }
 }
 
 // Setup a game on first sight
