@@ -40,7 +40,7 @@ function newGame() {
         // the clickSelector
         card.setAttribute('onclick', `flipTile(this, ${cards[i]})`);
 
-        // append card to LI, and then that to the board
+        // append card to Li, and then that to the board
         cardLi.appendChild(card);
         board.appendChild(cardLi);
     }
@@ -51,16 +51,18 @@ function flipTile(tile, val) {
     if (tile.innerHTML == "" && cardValue < 2) {
         tile.style.background = '#FFF';
         console.log('DEBUG: <b>FUNCTION START</b>');
+
         // First card selected
         if (cardValue.length == 0) {
             cardValue.push(val);
             card_tile.push(tile.classList[1]);
             console.log('DEBUG: Entered First card');
-            return;
+            console.log(card_tile);
+            
         }
         
         // Second card selected
-        if (cardValue.length == 1) {
+       else if (cardValue.length == 1) {
             cardValue.push(val);
             card_tile.push(tile.classList[1]);
 
@@ -89,7 +91,7 @@ function flipTile(tile, val) {
                     // Change back
                     for (let i = 0; i < 2; i++) {
                         const selected = document.querySelector(`.${card_tile[i]}`);
-                        selected.style.background = "#000";
+                        selected.style.background = "red";
                     }
 
                     // Reset
@@ -100,9 +102,6 @@ function flipTile(tile, val) {
 
             return;
         } 
-
-        // Should never go here
-        console.log('Error: Arrays invalid read');
     }
 }
 
