@@ -43,7 +43,9 @@ function newGame() {
 
 /* The flip function */
 function flipTile(tile, val) {
-        tile.style.background = '#FFF';
+
+        // Set background for tile
+        tile.style.background = `rgb(4, 99, 143) url(img/img-${val}.png)`;
 
         // First card selected
         if (cardValue.length == 0) {
@@ -55,8 +57,6 @@ function flipTile(tile, val) {
        else if (cardValue.length == 1) {
             cardValue.push(val);
             card_tile.push(tile.classList[1]);
-
-            console.log('DEBUG: Entered second card');
 
             // See if they are the same
             if (cardValue[0] == cardValue[1]) {
@@ -80,7 +80,7 @@ function flipTile(tile, val) {
                     // Change back
                     for (let i = 0; i < 2; i++) {
                         const selected = document.querySelector(`.${card_tile[i]}`);
-                        selected.style.background = "red";
+                        selected.style.background = "rgb(4, 99, 143)";
                     }
 
                     // Reset
@@ -91,7 +91,7 @@ function flipTile(tile, val) {
 
             return;
         } 
-}
+};
 
 // Setup a game on first sight
 window.onload = function () {
