@@ -6,6 +6,7 @@ let   gameStarted = false;
 // Selections
 let cardValue  = [];
 let card_tile  = [];
+let cardHold   = [];    // Cards that is flipped and matches
 let selections = null;
 let flipped    = null;
 
@@ -56,6 +57,10 @@ function newGame() {
 /* The flip function */
 function flipTile(tile, val) {
 
+        // Check if card already is matched
+        if (cardHold.includes(tile.classList[1]))
+            return;
+
         // Only process 2 clicks at a time
         selections++;
         if (selections > 2)
@@ -79,9 +84,14 @@ function flipTile(tile, val) {
             if (cardValue[0] == cardValue[1]) {
                 flipped += 2;
 
+                // Save the 2 cards
+                cardHold.push(card_tile[0]);
+                cardHold.push(card_tile[1]);
+
                 // Reset 
                 card_tile = [];
                 cardValue = [];
+                selections = 0;
 
                 // See if game is finished
                 if (flipped == cards.length) {
@@ -118,6 +128,7 @@ function flipTile(tile, val) {
                     // Reset
                     card_tile = [];
                     cardValue = [];
+                    selections = 0;
                 }, 750);
             }
 
