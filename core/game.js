@@ -68,14 +68,15 @@ function flipTile(tile, val) {
 
                 // See if game is finished
                 if (flipped == cards.length) {
-                    alert("Congratulations!");
-                    newBoard();
+                    if (window.confirm('Congratulations, you made it! Want to play again?'))
+                        newBoard();
+                    else
+                        window.location = 'http://noxies.info/';   
                 }
             }
 
             // else flipback
             else {
-
                 setTimeout(function() {
                     // Change back
                     for (let i = 0; i < 2; i++) {
