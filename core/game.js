@@ -20,13 +20,12 @@ Array.prototype.shuffle = function() {
 
 /* Add cards to board */
 function newGame() {
-    flipped = 0;
-    cards.shuffle();
 
     // Don't generate if there already is a game
     if (gameStarted)
         return;
 
+    cards.shuffle();
     flipped = 0;
 
     for (let i = 0; i < cards.length; i++) {
