@@ -2,10 +2,12 @@
 const board       = document.getElementsByClassName('cardHolder')[0];
 const cards       = [1,1,2,2,3,3,4,4,5,5,6,6];
 let   gameStarted = false;
+
 // Selections
-let cardValue = [];
-let card_tile = [];
-let flipped = null;
+let cardValue  = [];
+let card_tile  = [];
+let selections = null;
+let flipped    = null;
 
 // Shuffle function
 Array.prototype.shuffle = function() {
@@ -54,6 +56,11 @@ function newGame() {
 /* The flip function */
 function flipTile(tile, val) {
 
+        // Only process 2 clicks at a time
+        selections++;
+        if (selections > 2)
+            return;
+
         // Set background for tile
         tile.style.background = `rgb(4, 99, 143) url(img/img-${val}.png)`;
 
@@ -92,6 +99,7 @@ function flipTile(tile, val) {
                             newGame();
                         }, 400);   
                     }
+
                     else
                         window.location = 'http://noxies.info/';   
                 }
@@ -100,6 +108,7 @@ function flipTile(tile, val) {
             // else flipback
             else {
                 setTimeout(function() {
+
                     // Change back
                     for (let i = 0; i < 2; i++) {
                         const selected = document.querySelector(`.${card_tile[i]}`);
