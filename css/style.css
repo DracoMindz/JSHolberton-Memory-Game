@@ -10,8 +10,8 @@ body {
 }
 
 
-#header { margin: 0 auto; margin-top: 8%; width: 200px; height: 45px;}
-#header .title {font-size: 32px; color: rgb(238, 3, 207); text-shadow: 1px 1px 1px #000;}
+#header { margin: 0 auto; margin-top: 8%; width: 300px; height: 45px; padding-bottom: 55px;}
+#header .title {font-size: 48px; color: rgb(3, 160, 238); text-shadow: 1px 1px 1px #000;}
 
 #content-wrapper {
     width: 90%;
@@ -19,6 +19,8 @@ body {
     height: auto;
     margin: 0 auto;
     background: #000;
+    border: 1px SOLID rgb(2, 86, 241);
+    box-shadow: 1px 1px 24px 8px #000;
     padding: 25px;
 }
 
@@ -34,4 +36,7 @@ body {
 
 ul {
     list-style-type: none;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 45px;
 } li {margin-right: 8px; display: inline-block;}

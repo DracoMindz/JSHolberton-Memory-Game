@@ -1,6 +1,6 @@
 // Game
 const board = document.getElementsByClassName('cardHolder')[0];
-const cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+const cards = [1,1,2,2,3,3,4,4,5,5,6,6];
 
 // Selections
 let cardValue = [];
