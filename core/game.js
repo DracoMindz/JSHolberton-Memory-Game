@@ -57,8 +57,11 @@ function newGame() {
 /* The flip function */
 function flipTile(tile, val) {
 
-        // Check if card already is matched
+        // Check if card already is matched or is currently selected
         if (cardHold.includes(tile.classList[1]))
+            return;
+
+        if (card_tile.includes(tile.classList[1]))
             return;
 
         // Only process 2 clicks at a time
@@ -70,13 +73,13 @@ function flipTile(tile, val) {
         tile.style.background = `rgb(4, 99, 143) url(img/img-${val}.png)`;
 
         // First card selected
-        if (cardValue.length == 0) {
+        if (cardValue.length === 0) {
             cardValue.push(val);
             card_tile.push(tile.classList[1]);            
         }
         
         // Second card selected
-       else if (cardValue.length == 1) {
+       else if (cardValue.length === 1) {
             cardValue.push(val);
             card_tile.push(tile.classList[1]);
 
@@ -120,7 +123,7 @@ function flipTile(tile, val) {
                 setTimeout(function() {
 
                     // Change back
-                    for (let i = 0; i < 2; i++) {
+                    for (let i = 0; i < card_tile.length; i++) {
                         const selected = document.querySelector(`.${card_tile[i]}`);
                         selected.style.background= 'url(img/default.png)';
                     }
@@ -131,9 +134,7 @@ function flipTile(tile, val) {
                     selections = 0;
                 }, 750);
             }
-
-            return;
-        } 
+        }
 };
 
 function clearBoard() {
