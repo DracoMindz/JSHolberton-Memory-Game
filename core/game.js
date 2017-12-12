@@ -100,7 +100,7 @@ window.onload = function () {
 };
 
 // New game functionallity
-const key = document.getElementsByClassName('key')[0];
-key.addEventListener('click', () => {
-    newGame();
-})
+// const key = document.getElementsByClassName('key')[0];
+// key.addEventListener('click', () => {
+//     newGame();
+// })
