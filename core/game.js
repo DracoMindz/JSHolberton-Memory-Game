@@ -44,15 +44,11 @@ function newGame() {
 /* The flip function */
 function flipTile(tile, val) {
         tile.style.background = '#FFF';
-        console.log('DEBUG: <b>FUNCTION START</b>');
 
         // First card selected
         if (cardValue.length == 0) {
             cardValue.push(val);
-            card_tile.push(tile.classList[1]);
-            console.log('DEBUG: Entered First card');
-            console.log(card_tile);
-            
+            card_tile.push(tile.classList[1]);            
         }
         
         // Second card selected
@@ -65,8 +61,7 @@ function flipTile(tile, val) {
             // See if they are the same
             if (cardValue[0] == cardValue[1]) {
                 flipped += 2;
-                
-                console.log('DEBUG: Cards identical [73]'); 
+
                 // Reset 
                 card_tile = [];
                 cardValue = [];
@@ -80,7 +75,7 @@ function flipTile(tile, val) {
 
             // else flipback
             else {
-                console.log('DEBUG: Entered flipBack');
+
                 setTimeout(function() {
                     // Change back
                     for (let i = 0; i < 2; i++) {
