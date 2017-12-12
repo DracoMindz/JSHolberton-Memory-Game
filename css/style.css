@@ -26,8 +26,7 @@ body {
     height: 240px;
     width: 140px;
     transition: all 0.8s ease;
-    background: rgb(4, 99, 143);
-    background-image: url('img/default.png');
+    background: url(../img/default.png);
     cursor: pointer;
     background-size: cover !important;
     background-position: 20% 50% !important;
