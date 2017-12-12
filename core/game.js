@@ -1,7 +1,7 @@
 // Game
-const board = document.getElementsByClassName('cardHolder')[0];
-const cards = [1,1,2,2,3,3,4,4,5,5,6,6];
-
+const board       = document.getElementsByClassName('cardHolder')[0];
+const cards       = [1,1,2,2,3,3,4,4,5,5,6,6];
+let   gameStarted = false;
 // Selections
 let cardValue = [];
 let card_tile = [];
@@ -23,6 +23,10 @@ function newGame() {
     flipped = 0;
     cards.shuffle();
 
+    // Don't generate if there already is a game
+    if (gameStarted)
+        return;
+
     for (let i = 0; i < cards.length; i++) {
         // first create new li
         const cardLi = document.createElement('li');
@@ -39,6 +43,8 @@ function newGame() {
         cardLi.appendChild(card);
         board.appendChild(cardLi);
     }
+
+    gameStarted = true;
 }
 
 /* The flip function */
@@ -68,8 +74,20 @@ function flipTile(tile, val) {
 
                 // See if game is finished
                 if (flipped == cards.length) {
+                    gameStarted = false;
                     if (window.confirm('Congratulations, you made it! Want to play again?'))
-                        newBoard();
+                    {
+                        // Flip all cards back
+                        for (let i = 0; i < 2; i++) {
+                            const selected = document.querySelector(`.${card_tile[i]}`);
+                            selected.style.background = 'url(img/default.png)';
+                        }
+
+                        // Start new game
+                        setTimeout(function() {
+                            newBoard();
+                        }, 400);   
+                    }
                     else
                         window.location = 'http://noxies.info/';   
                 }
