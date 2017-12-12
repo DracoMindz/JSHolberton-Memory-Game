@@ -16,5 +16,6 @@ Clone: https://github.com/PatricNox/JS-Memory-Game.git
 
 ## Tester List
 
+_Kaisa Taipale_
 
-
+![Link: GitHub](https://github.com/kajsataipale)
