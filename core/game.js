@@ -81,7 +81,7 @@ function flipTile(tile, val) {
                     // Change back
                     for (let i = 0; i < 2; i++) {
                         const selected = document.querySelector(`.${card_tile[i]}`);
-                        selected.style.background = "rgb(4, 99, 143)";
+                        selected.style.background= 'url(img/default.png)';
                     }
 
                     // Reset
