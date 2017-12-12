@@ -5,7 +5,7 @@ let   gameStarted = false;
 // Selections
 let cardValue = [];
 let card_tile = [];
-let flipped = NULL;
+let flipped = null;
 
 // Shuffle function
 Array.prototype.shuffle = function() {
@@ -28,10 +28,13 @@ function newGame() {
     cards.shuffle();
     flipped = 0;
 
+    // Clear board if its filled already
+    clearBoard();
+
     for (let i = 0; i < cards.length; i++) {
         // first create new li
         const cardLi = document.createElement('li');
-
+        cardLi.classList.add('tileboard');
         // create the card class
         const card = document.createElement('div');
         card.classList.add('card');      // Assign className to new element
@@ -79,14 +82,14 @@ function flipTile(tile, val) {
                     if (window.confirm('Congratulations, you made it! Want to play again?'))
                     {
                         // Flip all cards back
-                        for (let i = 0; i < 2; i++) {
-                            const selected = document.querySelector(`.${card_tile[i]}`);
-                            selected.style.background = 'url(img/default.png)';
-                        }
+                        const tmp = document.querySelectorAll('.card');
+                        tmp.forEach(function(e) {
+                            e.style.background = 'url(img/default.png)';
+                        });
 
                         // Start new game
                         setTimeout(function() {
-                            newBoard();
+                            newGame();
                         }, 400);   
                     }
                     else
@@ -113,6 +116,11 @@ function flipTile(tile, val) {
         } 
 };
 
+function clearBoard() {
+    var divs = document.querySelectorAll('.tileboard');
+    if (divs.length > 1)
+        Array.from(divs).forEach((div) => div.remove())
+};
 // Setup a game on first sight
 window.onload = function () {
     newGame();
