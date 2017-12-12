@@ -19,3 +19,6 @@ Clone: https://github.com/PatricNox/JS-Memory-Game.git
 _Kaisa Taipale_
 
 ![Link: GitHub](https://github.com/kajsataipale)
+
+## Thank You!
+> I've got to play in front of people. If I'm not moved, how can they be moved. [Buddy Holly] (https://www.youtube.com/watch?v=Mv_KLDCf4Qk)
