@@ -40,3 +40,14 @@ ul {
     width: 80%;
     margin: 0 auto;
 } li {margin-right: 8px; display: inline-block;}
+
+.key {
+    border: 2px SOLID rgb(0, 79, 255);
+    color: #fff;
+    box-shadow: 1px 1px 9px 3px #000;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s ease;
+} .key:hover {border-color: rgb(0, 89, 255); box-shadow: 1px 1px 9px 3px rgb(4, 28, 94); transition: all 0.25s ease;}
+
+.tileboard {transition: all 0.85s ease;}

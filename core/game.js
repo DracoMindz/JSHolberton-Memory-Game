@@ -35,9 +35,11 @@ function newGame() {
     clearBoard();
 
     for (let i = 0; i < cards.length; i++) {
+
         // first create new li
         const cardLi = document.createElement('li');
         cardLi.classList.add('tileboard');
+
         // create the card class
         const card = document.createElement('div');
         card.classList.add('card');      // Assign className to new element
@@ -109,7 +111,7 @@ function flipTile(tile, val) {
 
                         // Start new game
                         setTimeout(function() {
-                            newGame();
+                            resetGame();
                         }, 400);   
                     }
 
@@ -142,13 +144,39 @@ function clearBoard() {
     if (divs.length > 1)
         Array.from(divs).forEach((div) => div.remove())
 };
+
 // Setup a game on first sight
 window.onload = function () {
     newGame();
 };
 
 // New game functionallity
-// const key = document.getElementsByClassName('key')[0];
-// key.addEventListener('click', () => {
-//     newGame();
-// })
+const key = document.getElementsByClassName('key')[0];
+key.addEventListener('click', () => {
+    resetGame();
+});
+
+
+// Reset the board
+function resetGame() {
+
+    // Disable game
+    gameStarted = false;
+
+    // Empty variables
+    let cardValue = [];
+    let card_tile = [];
+    let cardHold = []; 
+    let selections = null;
+    let flipped = null;
+
+    // Clear board
+    const divs = document.querySelectorAll('.tileboard');
+    divs.forEach(function (e) {
+        e.style.opacity = '0';
+    });
+
+    setTimeout(function () {
+        newGame(); // Calls resetBoard() aswell, no need to do it in this function
+    }, 900);
+}
