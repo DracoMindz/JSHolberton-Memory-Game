@@ -5,7 +5,7 @@ let   gameStarted = false;
 // Selections
 let cardValue = [];
 let card_tile = [];
-let flipped = 0;
+let flipped = NULL;
 
 // Shuffle function
 Array.prototype.shuffle = function() {
@@ -26,6 +26,8 @@ function newGame() {
     // Don't generate if there already is a game
     if (gameStarted)
         return;
+
+    flipped = 0;
 
     for (let i = 0; i < cards.length; i++) {
         // first create new li
