@@ -14,7 +14,7 @@ Clone: https://github.com/PatricNox/JS-Memory-Game.git
 
 [Download Zip File](https://github.com/PatricNox/JS-Memory-Game/archive/master.zip)
 
-## Tester List
+## Thanks to these people for testing and debugging!
 
 _Kaisa Taipale_
 
