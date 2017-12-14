@@ -20,5 +20,9 @@ _Kaisa Taipale_
 
 ![Link: GitHub](https://github.com/kajsataipale)
 
+_Henrik Bielsten_
+
+![Link: GitHub](https://github.com/HenrikBielsten)
+
 ## Thank You!
 > I've got to play in front of people. If I'm not moved, how can they be moved. [Buddy Holly] (https://www.youtube.com/watch?v=Mv_KLDCf4Qk)
