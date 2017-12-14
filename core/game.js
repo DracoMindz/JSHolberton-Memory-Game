@@ -164,11 +164,11 @@ function resetGame() {
     gameStarted = false;
 
     // Empty variables
-    let cardValue = [];
-    let card_tile = [];
-    let cardHold = []; 
-    let selections = null;
-    let flipped = null;
+    cardValue = [];
+    card_tile = [];
+    cardHold = []; 
+    selections = null;
+    flipped = null;
 
     // Clear board
     const divs = document.querySelectorAll('.tileboard');
