@@ -99,25 +99,27 @@ function flipTile(tile, val) {
                 selections = 0;
 
                 // See if game is finished
-                if (flipped == cards.length) {
-                    gameStarted = false;
-                    if (window.confirm('Congratulations, you made it! Want to play again?'))
-                    {
-                        // Flip all cards back
-                        const tmp = document.querySelectorAll('.card');
-                        tmp.forEach(function(e) {
-                            e.style.background = 'url(img/default.png)';
-                        });
+                setTimeout(function() {
+                    if (flipped == cards.length) {
+                        gameStarted = false;
+                        if (window.confirm('Congratulations, you made it! Want to play again?'))
+                        {
+                            // Flip all cards back
+                            const tmp = document.querySelectorAll('.card');
+                            tmp.forEach(function(e) {
+                                e.style.background = 'url(img/default.png)';
+                            });
 
-                        // Start new game
-                        setTimeout(function() {
-                            resetGame();
-                        }, 400);   
+                            // Start new game
+                            setTimeout(function() {
+                                resetGame();
+                            }, 400);   
+                        }
+
+                        else
+                            window.location = 'http://noxies.info/';   
                     }
-
-                    else
-                        window.location = 'http://noxies.info/';   
-                }
+                }, 750);
             }
 
             // else flipback
