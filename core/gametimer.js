@@ -2,6 +2,7 @@
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
 setInterval(setTime, 1000);
+gameStarted = true;
 
 function setTime() {
     ++totalSeconds;
@@ -17,6 +18,3 @@ function pad(val) {
         return valString;
     }
 }
-
-<
-span id = "minutes" > < /span>;<span id="seconds"></span >
