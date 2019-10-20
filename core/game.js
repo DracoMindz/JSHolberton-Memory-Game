@@ -1,18 +1,19 @@
 // Game
-const board       = document.getElementsByClassName('cardHolder')[0];
-const cards       = [1,1,2,2,3,3,4,4,5,5,6,6];
-let   gameStarted = false;
+const board = document.getElementsByClassName('cardHolder')[0];
+const cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+let gameStarted = false;
 
 // Selections
-let cardValue  = [];
-let card_tile  = [];
-let cardHold   = [];    // Cards that is flipped and matches
+let cardValue = [];
+let card_tile = [];
+let cardHold = []; // Cards that is flipped and matches
 let selections = null;
-let flipped    = null;
+let flipped = null;
 
 // Shuffle function
 Array.prototype.shuffle = function() {
-    let i = this.length, j, temp;
+    let i = this.length,
+        j, temp;
     while (--i > 0) {
         j = Math.floor(Math.random() * (i + 1));
         temp = this[j];
@@ -42,7 +43,7 @@ function newGame() {
 
         // create the card class
         const card = document.createElement('div');
-        card.classList.add('card');      // Assign className to new element
+        card.classList.add('card'); // Assign className to new element
         card.classList.add(`tile_${i}`); // set identifier for card
 
         // the clickSelector
@@ -59,86 +60,83 @@ function newGame() {
 /* The flip function */
 function flipTile(tile, val) {
 
-        // Check if card already is matched or is currently selected
-        if (cardHold.includes(tile.classList[1]))
-            return;
+    // Check if card already is matched or is currently selected
+    if (cardHold.includes(tile.classList[1]))
+        return;
 
-        if (card_tile.includes(tile.classList[1]))
-            return;
+    if (card_tile.includes(tile.classList[1]))
+        return;
 
-        // Only process 2 clicks at a time
-        selections++;
-        if (selections > 2)
-            return;
+    // Only process 2 clicks at a time
+    selections++;
+    if (selections > 2)
+        return;
 
-        // Set background for tile
-        tile.style.background = `rgb(4, 99, 143) url(img/img-${val}.png)`;
+    // Set background for tile
+    tile.style.background = `rgb(4, 99, 143) url(img/img-${val}.png)`;
 
-        // First card selected
-        if (cardValue.length === 0) {
-            cardValue.push(val);
-            card_tile.push(tile.classList[1]);            
+    // First card selected
+    if (cardValue.length === 0) {
+        cardValue.push(val);
+        card_tile.push(tile.classList[1]);
+    }
+
+    // Second card selected
+    else if (cardValue.length === 1) {
+        cardValue.push(val);
+        card_tile.push(tile.classList[1]);
+
+        // See if they are the same
+        if (cardValue[0] == cardValue[1]) {
+            flipped += 2;
+
+            // Save the 2 cards
+            cardHold.push(card_tile[0]);
+            cardHold.push(card_tile[1]);
+
+            // Reset 
+            card_tile = [];
+            cardValue = [];
+            selections = 0;
+
+            // See if game is finished
+            setTimeout(function() {
+                if (flipped == cards.length) {
+                    gameStarted = false;
+                    if (window.confirm('Congratulations, you made it! Want to play again?')) {
+                        // Flip all cards back
+                        const tmp = document.querySelectorAll('.card');
+                        tmp.forEach(function(e) {
+                            e.style.background = 'url(img/default.png)';
+                        });
+
+                        // Start new game
+                        setTimeout(function() {
+                            resetGame();
+                        }, 400);
+                    } else
+                        window.location = 'http://noxies.info/';
+                }
+            }, 750);
         }
-        
-        // Second card selected
-       else if (cardValue.length === 1) {
-            cardValue.push(val);
-            card_tile.push(tile.classList[1]);
 
-            // See if they are the same
-            if (cardValue[0] == cardValue[1]) {
-                flipped += 2;
+        // else flipback
+        else {
+            setTimeout(function() {
 
-                // Save the 2 cards
-                cardHold.push(card_tile[0]);
-                cardHold.push(card_tile[1]);
+                // Change back
+                for (let i = 0; i < card_tile.length; i++) {
+                    const selected = document.querySelector(`.${card_tile[i]}`);
+                    selected.style.background = 'url(img/default.png)';
+                }
 
-                // Reset 
+                // Reset
                 card_tile = [];
                 cardValue = [];
                 selections = 0;
-
-                // See if game is finished
-                setTimeout(function() {
-                    if (flipped == cards.length) {
-                        gameStarted = false;
-                        if (window.confirm('Congratulations, you made it! Want to play again?'))
-                        {
-                            // Flip all cards back
-                            const tmp = document.querySelectorAll('.card');
-                            tmp.forEach(function(e) {
-                                e.style.background = 'url(img/default.png)';
-                            });
-
-                            // Start new game
-                            setTimeout(function() {
-                                resetGame();
-                            }, 400);   
-                        }
-
-                        else
-                            window.location = 'http://noxies.info/';   
-                    }
-                }, 750);
-            }
-
-            // else flipback
-            else {
-                setTimeout(function() {
-
-                    // Change back
-                    for (let i = 0; i < card_tile.length; i++) {
-                        const selected = document.querySelector(`.${card_tile[i]}`);
-                        selected.style.background= 'url(img/default.png)';
-                    }
-
-                    // Reset
-                    card_tile = [];
-                    cardValue = [];
-                    selections = 0;
-                }, 750);
-            }
+            }, 750);
         }
+    }
 };
 
 function clearBoard() {
@@ -148,7 +146,7 @@ function clearBoard() {
 };
 
 // Setup a game on first sight
-window.onload = function () {
+window.onload = function() {
     newGame();
 };
 
@@ -168,17 +166,30 @@ function resetGame() {
     // Empty variables
     cardValue = [];
     card_tile = [];
-    cardHold = []; 
+    cardHold = [];
     selections = null;
     flipped = null;
 
     // Clear board
     const divs = document.querySelectorAll('.tileboard');
-    divs.forEach(function (e) {
+    divs.forEach(function(e) {
         e.style.opacity = '0';
     });
 
-    setTimeout(function () {
+    setTimeout(function() {
         newGame(); // Calls resetBoard() aswell, no need to do it in this function
     }, 900);
+}
+
+function startTimer() {
+    gameStarted = true
+
+    var sec = 0;
+
+    function pad(val) { return val > 9 ? val : "0" + val; }
+    setInterval(function() {
+        document.getElementById("seconds").innerHTML = pad(++sec % 60);
+        document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+    }, 1000); <
+    span id = "minutes" > < /span>:<span id="seconds"></span >
 }
