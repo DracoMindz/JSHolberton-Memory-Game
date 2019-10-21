@@ -84,23 +84,6 @@ li {
     transition: all 0.85s ease;
 }
 
-
-/* attempted to use buttons to controltimer. not successful
-/*button {
-    background: steelblue;
-    border-radius: 2px SOLID rgb(0, 79, 255);
-    height: 40px;
-    width: 100px;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    border: none;
-}
-
-button:focus {
-    outline: 0;
-}*/
-
 #minutes,
 #seconds {
     font-size: 40px;
@@ -109,21 +92,3 @@ button:focus {
 .bigger {
     font-size: 40px;
 }
-
-
-/*.button {
-    box-shadow: 1px 1px 9px 3px #000;
-    ;
-}
-
-.button:hover {
-    border-color: rgb(0, 89, 255);
-    box-shadow: 1px 1px 9px 3px rgb(4, 28, 94);
-    transition: all 0.25s ease;
-}
-
-.button:active {
-    background-color: #74992e;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}*/
