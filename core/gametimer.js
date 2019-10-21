@@ -1,7 +1,16 @@
-//game timer: counts upvar minutesLabel = document.getElementById("minutes");
+//game timer: counts up
+var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
 gameStarted = true
 setInterval(setTime, 1000);
+//set minutes 
+
+function setTime() {
+    ++totalSeconds;
+    secondsLabel.innerHTML = pad(totalSeconds % 60);
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
 
 function pad(val) {
     var valString = val + "";
@@ -10,13 +19,6 @@ function pad(val) {
     } else {
         return valString;
     }
-}
-var totalSeconds = 0;
-
-function setTime() {
-    ++totalSeconds;
-    secondsLabel.innerHTML = pad(totalSeconds % 60);
-    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
 }
 
 function set_timer() {
